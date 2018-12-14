@@ -24,6 +24,7 @@ public class EurekaApplication {
     public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
+            //关闭打开的csrf（跨域）保护
             http.csrf().disable();
             super.configure(http);
         }
