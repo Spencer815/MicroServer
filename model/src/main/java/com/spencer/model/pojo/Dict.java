@@ -1,27 +1,23 @@
-package com.spencer.model;
+package com.spencer.model.pojo;
 
 import java.util.Date;
 
 /**
- * 菜单实体类
+ * 字典实体类
  *
  * @author lichao
  * @date 2018/12/3
  **/
-public class Menu {
+public class Dict {
     private Integer id;
 
     private String code;
 
+    private String text;
+
     private String name;
 
-    private String icon;
-
-    private Integer pId;
-
-    private Integer order;
-
-    private String url;
+    private String value;
 
     private Boolean state;
 
@@ -31,21 +27,19 @@ public class Menu {
 
     private Date deletedAt;
 
-    public Menu(Integer id, String code, String name, String icon, Integer pId, Integer order, String url, Boolean state, Date createdAt, Date updatedAt, Date deletedAt) {
+    public Dict(Integer id, String code, String text, String name, String value, Boolean state, Date createdAt, Date updatedAt, Date deletedAt) {
         this.id = id;
         this.code = code;
+        this.text = text;
         this.name = name;
-        this.icon = icon;
-        this.pId = pId;
-        this.order = order;
-        this.url = url;
+        this.value = value;
         this.state = state;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.deletedAt = deletedAt;
     }
 
-    public Menu() {
+    public Dict() {
         super();
     }
 
@@ -65,6 +59,14 @@ public class Menu {
         this.code = code == null ? null : code.trim();
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text == null ? null : text.trim();
+    }
+
     public String getName() {
         return name;
     }
@@ -73,36 +75,12 @@ public class Menu {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getIcon() {
-        return icon;
+    public String getValue() {
+        return value;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon == null ? null : icon.trim();
-    }
-
-    public Integer getpId() {
-        return pId;
-    }
-
-    public void setpId(Integer pId) {
-        this.pId = pId;
-    }
-
-    public Integer getOrder() {
-        return order;
-    }
-
-    public void setOrder(Integer order) {
-        this.order = order;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
+    public void setValue(String value) {
+        this.value = value == null ? null : value.trim();
     }
 
     public Boolean getState() {

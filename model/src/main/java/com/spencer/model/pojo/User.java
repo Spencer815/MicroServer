@@ -1,4 +1,4 @@
-package com.spencer.model;
+package com.spencer.model.pojo;
 
 import java.util.Date;
 

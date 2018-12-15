@@ -1,4 +1,4 @@
-package com.spencer;
+package com.spencer.model;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

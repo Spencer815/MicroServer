@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spencer.dao.DeptMapper" >
-  <resultMap id="BaseResultMap" type="com.spencer.model.Dept" >
+<mapper namespace="com.spencer.model.dao.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.spencer.model.pojo.Menu" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="node" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="parent_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="icon" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="p_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="state" jdbcType="BIT" javaType="java.lang.Boolean" />
       <arg column="created_at" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="updated_at" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -15,30 +17,30 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, code, name, node, parent_code, state, created_at, updated_at, deleted_at
+    id, code, name, icon, p_id, order, url, state, created_at, updated_at, deleted_at
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from dept
+    from menu
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from dept
+    delete from menu
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spencer.model.Dept" >
-    insert into dept (id, code, name, 
-      node, parent_code, state, 
-      created_at, updated_at, deleted_at
-      )
+  <insert id="insert" parameterType="com.spencer.model.pojo.Menu" >
+    insert into menu (id, code, name, 
+      icon, p_id, order, url, 
+      state, created_at, updated_at, 
+      deleted_at)
     values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{node,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, #{state,jdbcType=BIT}, 
-      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{deletedAt,jdbcType=TIMESTAMP}
-      )
+      #{icon,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, #{order,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{state,jdbcType=BIT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.spencer.model.Dept" >
-    insert into dept
+  <insert id="insertSelective" parameterType="com.spencer.model.pojo.Menu" >
+    insert into menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -49,11 +51,17 @@
       <if test="name != null" >
         name,
       </if>
-      <if test="node != null" >
-        node,
+      <if test="icon != null" >
+        icon,
       </if>
-      <if test="parentCode != null" >
-        parent_code,
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+      <if test="url != null" >
+        url,
       </if>
       <if test="state != null" >
         state,
@@ -78,11 +86,17 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="node != null" >
-        #{node,jdbcType=VARCHAR},
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
       </if>
-      <if test="parentCode != null" >
-        #{parentCode,jdbcType=VARCHAR},
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         #{state,jdbcType=BIT},
@@ -98,8 +112,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.spencer.model.Dept" >
-    update dept
+  <update id="updateByPrimaryKeySelective" parameterType="com.spencer.model.pojo.Menu" >
+    update menu
     <set >
       <if test="code != null" >
         code = #{code,jdbcType=VARCHAR},
@@ -107,11 +121,17 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="node != null" >
-        node = #{node,jdbcType=VARCHAR},
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
       </if>
-      <if test="parentCode != null" >
-        parent_code = #{parentCode,jdbcType=VARCHAR},
+      <if test="pId != null" >
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="order != null" >
+        order = #{order,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         state = #{state,jdbcType=BIT},
@@ -128,12 +148,14 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.spencer.model.Dept" >
-    update dept
+  <update id="updateByPrimaryKey" parameterType="com.spencer.model.pojo.Menu" >
+    update menu
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
-      node = #{node,jdbcType=VARCHAR},
-      parent_code = #{parentCode,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      p_id = #{pId,jdbcType=INTEGER},
+      order = #{order,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
       state = #{state,jdbcType=BIT},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP},

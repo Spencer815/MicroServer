@@ -1,12 +1,12 @@
-package com.spencer.dao;
+package com.spencer.model.dao;
 
-import com.spencer.model.Dept;
+import com.spencer.model.pojo.Menu;
 
 /**
  * @author lichao
  * @date 2018/12/3
  **/
-public interface DeptMapper {
+public interface MenuMapper {
     /**
      *
      * @param id
@@ -19,33 +19,33 @@ public interface DeptMapper {
      * @param record
      * @return
      */
-    int insert(Dept record);
+    int insert(Menu record);
 
     /**
      *
      * @param record
      * @return
      */
-    int insertSelective(Dept record);
+    int insertSelective(Menu record);
 
     /**
      *
      * @param id
      * @return
      */
-    Dept selectByPrimaryKey(Integer id);
+    Menu selectByPrimaryKey(Integer id);
 
     /**
      *
      * @param record
      * @return
      */
-    int updateByPrimaryKeySelective(Dept record);
+    int updateByPrimaryKeySelective(Menu record);
 
     /**
      *
      * @param record
      * @return
      */
-    int updateByPrimaryKey(Dept record);
+    int updateByPrimaryKey(Menu record);
 }

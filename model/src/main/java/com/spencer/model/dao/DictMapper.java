@@ -1,12 +1,12 @@
-package com.spencer.dao;
+package com.spencer.model.dao;
 
-import com.spencer.model.Menu;
+import com.spencer.model.pojo.Dict;
 
 /**
  * @author lichao
  * @date 2018/12/3
  **/
-public interface MenuMapper {
+public interface DictMapper {
     /**
      *
      * @param id
@@ -19,33 +19,33 @@ public interface MenuMapper {
      * @param record
      * @return
      */
-    int insert(Menu record);
+    int insert(Dict record);
 
     /**
      *
      * @param record
      * @return
      */
-    int insertSelective(Menu record);
+    int insertSelective(Dict record);
 
     /**
      *
      * @param id
      * @return
      */
-    Menu selectByPrimaryKey(Integer id);
+    Dict selectByPrimaryKey(Integer id);
 
     /**
      *
      * @param record
      * @return
      */
-    int updateByPrimaryKeySelective(Menu record);
+    int updateByPrimaryKeySelective(Dict record);
 
     /**
      *
      * @param record
      * @return
      */
-    int updateByPrimaryKey(Menu record);
+    int updateByPrimaryKey(Dict record);
 }

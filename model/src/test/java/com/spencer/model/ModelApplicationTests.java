@@ -1,4 +1,4 @@
-package com.spencer;
+package com.spencer.model;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

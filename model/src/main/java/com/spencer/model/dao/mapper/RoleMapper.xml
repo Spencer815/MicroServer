@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spencer.dao.DictMapper" >
-  <resultMap id="BaseResultMap" type="com.spencer.model.Dict" >
+<mapper namespace="com.spencer.model.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.spencer.model.pojo.Role" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="text" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="value" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="role_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="state" jdbcType="BIT" javaType="java.lang.Boolean" />
       <arg column="created_at" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="updated_at" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -15,43 +13,37 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, code, text, name, value, state, created_at, updated_at, deleted_at
+    id, name, role_name, state, created_at, updated_at, deleted_at
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from dict
+    from role
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from dict
+    delete from role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spencer.model.Dict" >
-    insert into dict (id, code, text, 
-      name, value, state, created_at, 
-      updated_at, deleted_at)
-    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{text,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{state,jdbcType=BIT}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{updatedAt,jdbcType=TIMESTAMP}, #{deletedAt,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.spencer.model.pojo.Role" >
+    insert into role (id, name, role_name, 
+      state, created_at, updated_at, 
+      deleted_at)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, 
+      #{state,jdbcType=BIT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.spencer.model.Dict" >
-    insert into dict
+  <insert id="insertSelective" parameterType="com.spencer.model.pojo.Role" >
+    insert into role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="code != null" >
-        code,
-      </if>
-      <if test="text != null" >
-        text,
-      </if>
       <if test="name != null" >
         name,
       </if>
-      <if test="value != null" >
-        value,
+      <if test="roleName != null" >
+        role_name,
       </if>
       <if test="state != null" >
         state,
@@ -70,17 +62,11 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="code != null" >
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="text != null" >
-        #{text,jdbcType=VARCHAR},
-      </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="value != null" >
-        #{value,jdbcType=VARCHAR},
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         #{state,jdbcType=BIT},
@@ -96,20 +82,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.spencer.model.Dict" >
-    update dict
+  <update id="updateByPrimaryKeySelective" parameterType="com.spencer.model.pojo.Role" >
+    update role
     <set >
-      <if test="code != null" >
-        code = #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="text != null" >
-        text = #{text,jdbcType=VARCHAR},
-      </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="value != null" >
-        value = #{value,jdbcType=VARCHAR},
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         state = #{state,jdbcType=BIT},
@@ -126,12 +106,10 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.spencer.model.Dict" >
-    update dict
-    set code = #{code,jdbcType=VARCHAR},
-      text = #{text,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      value = #{value,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.spencer.model.pojo.Role" >
+    update role
+    set name = #{name,jdbcType=VARCHAR},
+      role_name = #{roleName,jdbcType=VARCHAR},
       state = #{state,jdbcType=BIT},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP},

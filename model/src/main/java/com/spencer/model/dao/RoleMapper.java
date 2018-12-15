@@ -1,6 +1,6 @@
-package com.spencer.dao;
+package com.spencer.model.dao;
 
-import com.spencer.model.Role;
+import com.spencer.model.pojo.Role;
 
 /**
  * @author lichao

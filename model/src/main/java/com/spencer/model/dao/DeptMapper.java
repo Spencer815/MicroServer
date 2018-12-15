@@ -1,12 +1,12 @@
-package com.spencer.dao;
+package com.spencer.model.dao;
 
-import com.spencer.model.Dict;
+import com.spencer.model.pojo.Dept;
 
 /**
  * @author lichao
  * @date 2018/12/3
  **/
-public interface DictMapper {
+public interface DeptMapper {
     /**
      *
      * @param id
@@ -19,33 +19,33 @@ public interface DictMapper {
      * @param record
      * @return
      */
-    int insert(Dict record);
+    int insert(Dept record);
 
     /**
      *
      * @param record
      * @return
      */
-    int insertSelective(Dict record);
+    int insertSelective(Dept record);
 
     /**
      *
      * @param id
      * @return
      */
-    Dict selectByPrimaryKey(Integer id);
+    Dept selectByPrimaryKey(Integer id);
 
     /**
      *
      * @param record
      * @return
      */
-    int updateByPrimaryKeySelective(Dict record);
+    int updateByPrimaryKeySelective(Dept record);
 
     /**
      *
      * @param record
      * @return
      */
-    int updateByPrimaryKey(Dict record);
+    int updateByPrimaryKey(Dept record);
 }

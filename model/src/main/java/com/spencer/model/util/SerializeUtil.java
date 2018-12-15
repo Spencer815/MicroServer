@@ -1,4 +1,4 @@
-package com.spencer.util;
+package com.spencer.model.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
